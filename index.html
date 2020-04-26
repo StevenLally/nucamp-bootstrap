@@ -28,7 +28,8 @@
           <h2>a better way to camp</h2>
         </div>
         <div class="col-md-4 col-xl-2">
-          <a role="button" class="btn btn-info btn-lg mt-4" data-toggle="modal" data-target="#reserveModal">Reserve
+          <a role="button" id="reserve-btn" class="btn btn-info btn-lg mt-4" data-toggle="modal"
+            data-target="#reserveModal">Reserve
             Campsite</a>
         </div>
       </div>
@@ -87,10 +88,53 @@
               <div class="row form-group">
                 <div class="col">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary">Search</button>
+                  <button type="submit" id="reserve-search" class="btn btn-primary">Search</button>
                 </div>
               </div>
             </form>
+
+            <div id="reserve-table" class="d-none">
+              <div class="row">
+                <div class="col-sm-9">
+                  <h2>Facts &amp; Figures</h2>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr class="bg-primary text-light">
+                          <th></th>
+                          <th>2016</th>
+                          <th>2017</th>
+                          <th>2018</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-primary">
+                        <tr>
+                          <th>Staff Wilderness Experts</th>
+                          <td>10</td>
+                          <td>20</td>
+                          <td>40</td>
+                        </tr>
+                        <tr>
+                          <th>New Campers</th>
+                          <td>256</td>
+                          <td>1,280</td>
+                          <td>5,360</td>
+                        </tr>
+                        <tr>
+                          <th>Square Miles Covered</th>
+                          <td>101,325</td>
+                          <td>423,000</td>
+                          <td>~3,000,000</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="row ml-1">
+                <button type="button" id="reserve-back" class="btn btn-secondary">Back</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -301,61 +345,24 @@
   <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
-    //copy the default reserve modal and reset it to default state when closed
-    let originalReserve = $("#reserveModal").clone();
-    $("#reserveModal").on("hide.bs.modal", function () {
-      $("#reserveModal").remove();
-      let reserveCopy = originalReserve.clone();
-      $("body").append(reserveCopy);
+    //hide search table and show initial reserve form on opening modal
+    $("#reserve-btn").click(function () {
+      if ($("#reserveForm").hasClass("d-none")) {
+        $("#reserveForm").removeClass("d-none");
+        $("#reserve-table").addClass("d-none");
+      }
     })
 
-    //html to change modal to after clicking submit button
-    let searchHTML = '<div class="container-fluid">' +
-      '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
-      'Because of COVID-19, some campsites may be closed until August or further notice.' +
-      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-      '</div>' +
-      '<div class="row row-content">' +
-      '<div class="col-sm-9">' +
-      '<h2>Facts &amp; Figures</h2>' +
-      '<div class="table-responsive">' +
-      '<table class="table table-striped">' +
-      '<thead>' +
-      '<tr class="bg-primary text-light">' +
-      '<th></th>' +
-      '<th>2016</th>' +
-      '<th>2017</th>' +
-      '<th>2018</th>' +
-      '</tr>' +
-      '</thead>' +
-      '<tbody class="table-primary">' +
-      '<tr>' +
-      '<th>Staff Wilderness Experts</th>' +
-      '<td>10</td>' +
-      '<td>20</td>' +
-      '<td>40</td>' +
-      '</tr>' +
-      '<tr>' +
-      '<th>New Campers</th>' +
-      '<td>256</td>' +
-      '<td>1,280</td>' +
-      '<td>5,360</td>' +
-      '</tr>' +
-      '<tr>' +
-      '<th>Square Miles Covered</th>' +
-      '<td>101,325</td>' +
-      '<td>423,000</td>' +
-      '<td>~3,000,000</td>' +
-      '</tr>' +
-      '</tbody>' +
-      '</table>' +
-      '</div>' +
-      '</div>' +
-      '</div>' +
-      '</div>';
+    //show search table in reserve modal after clicking search button
+    $("#reserve-search").click(function () {
+      $("#reserveForm").addClass("d-none");
+      $("#reserve-table").removeClass("d-none");
+    })
 
-    $("#reserveForm").submit(function () {
-      $(".reserve-body").html(searchHTML);
+    //return to initial form in reserve modal after clicking back button from table view
+    $("#reserve-back").click(function () {
+      $("#reserveForm").removeClass("d-none");
+      $("#reserve-table").addClass("d-none");
     })
 
   </script>
