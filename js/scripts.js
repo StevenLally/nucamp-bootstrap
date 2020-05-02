@@ -15,22 +15,28 @@ $(function () {
   })
 
   //hide search table and show initial reserve form on opening modal
-  $("#reserve-btn").click(function () {
+  $("#reserveButton").click(function () {
+    $("#reserveModal").modal("toggle");
+
     if ($("#reserveForm").hasClass("d-none")) {
       $("#reserveForm").removeClass("d-none");
-      $("#reserve-table").addClass("d-none");
+      $("#reserveTable").addClass("d-none");
     }
   })
 
   //show search table in reserve modal after clicking search button
-  $("#reserve-search").click(function () {
+  $("#reserveSearch").click(function () {
     $("#reserveForm").addClass("d-none");
-    $("#reserve-table").removeClass("d-none");
+    $("#reserveTable").removeClass("d-none");
   })
 
   //return to initial form in reserve modal after clicking back button from table view
-  $("#reserve-back").click(function () {
+  $("#reserveBack").click(function () {
     $("#reserveForm").removeClass("d-none");
-    $("#reserve-table").addClass("d-none");
+    $("#reserveTable").addClass("d-none");
+  })
+
+  $("#loginButton").click(function () {
+    $("#loginModal").modal("toggle");
   })
 });

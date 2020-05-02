@@ -31,9 +31,7 @@
           <h2>a better way to camp</h2>
         </div>
         <div class="col-md-4 col-xl-2">
-          <a role="button" id="reserve-btn" class="btn btn-info btn-lg mt-4" data-toggle="modal"
-            data-target="#reserveModal">Reserve
-            Campsite</a>
+          <a role="button" id="reserveButton" class="btn btn-info btn-lg mt-4">Reserve Campsite</a>
         </div>
       </div>
     </div>
@@ -91,12 +89,12 @@
               <div class="row form-group">
                 <div class="col">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" id="reserve-search" class="btn btn-primary">Search</button>
+                  <button type="submit" id="reserveSearch" class="btn btn-primary">Search</button>
                 </div>
               </div>
             </form>
 
-            <div id="reserve-table" class="d-none">
+            <div id="reserveTable" class="d-none">
               <div class="row">
                 <div class="col-sm-9">
                   <h2>Facts &amp; Figures</h2>
@@ -135,7 +133,7 @@
                 </div>
               </div>
               <div class="row ml-1">
-                <button type="button" id="reserve-back" class="btn btn-secondary">Back</button>
+                <button type="button" id="reserveBack" class="btn btn-secondary">Back</button>
               </div>
             </div>
           </div>
@@ -159,7 +157,7 @@
               Contact</a></li>
         </ul>
         <span class="navbar-text ml-auto">
-          <a data-toggle="modal" data-target="#loginModal">
+          <a id="loginButton">
             <i class="fa fa-sign-in"></i> Login </a>
         </span>
       </div>
